@@ -39,7 +39,8 @@ export function getNumberFormat(numberValues: number[]): NumberFormat {
   const numberFormat: NumberFormat = {
     integerLength: 0,
     fractionalLength: 0,
-    totalLength: 0
+    /** the getter allows to change the fractional length */
+    get totalLength() { return _getTotalLength(numberFormat); }
   };
 
   numberValues.forEach((numberValue: number) => {
@@ -48,7 +49,6 @@ export function getNumberFormat(numberValues: number[]): NumberFormat {
     numberFormat.integerLength = Math.max(numberFormat.integerLength, (integerPart || '').length);
     numberFormat.fractionalLength = Math.max(numberFormat.fractionalLength, (fractionalPart || '').length);
   });
-  numberFormat.totalLength = _getTotalLength(numberFormat);
 
   return numberFormat;
 }

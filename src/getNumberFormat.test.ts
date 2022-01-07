@@ -74,4 +74,16 @@ describe('getNumberFormat', () => {
 
       expect(numberFormat.totalLength).to.eql(6);
     });
+
+  it('adapt the totalLength if the fractional part changes', () => {
+    const numberList: number[] = [
+      .12,
+      .15,
+      .1358,
+    ];
+
+    const numberFormat: NumberFormat = getNumberFormat(numberList);
+    numberFormat.fractionalLength = 2;
+    expect(numberFormat.totalLength).to.eql(4);
+  });
 });
