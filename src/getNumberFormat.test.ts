@@ -86,4 +86,33 @@ describe('getNumberFormat', () => {
     numberFormat.fractionalLength = 2;
     expect(numberFormat.totalLength).to.eql(4);
   });
+
+  it('adds negative exponents to the fractionalLength', () => {
+    const numberList: number[] = [
+      8e-8,
+      9.1e-9, //0.0000000091
+      .1358,
+    ];
+
+    const numberFormat: NumberFormat = getNumberFormat(numberList);
+    expect(numberFormat.fractionalLength).to.eql(10);
+
+  });
+
+  it('adds positiv exponents to the integerLength', () => {
+    /**
+     * the test succeeds without additional implementation because the 
+     * script engine transforms positiv exponents to integer digits (up to 
+     * an exponent of 20)
+     */
+    const numberList: number[] = [
+      8e8,
+      9e9,
+      1234,
+    ];
+
+    const numberFormat: NumberFormat = getNumberFormat(numberList);
+    expect(numberFormat.integerLength).to.eql(10);
+  });
+
 });

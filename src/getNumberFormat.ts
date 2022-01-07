@@ -45,9 +45,20 @@ export function getNumberFormat(numberValues: number[]): NumberFormat {
 
   numberValues.forEach((numberValue: number) => {
     const numberString: string = numberValue.toString();
-    const [integerPart, fractionalPart] = numberString.split(DECIMAL_SEPARATOR);
-    numberFormat.integerLength = Math.max(numberFormat.integerLength, (integerPart || '').length);
-    numberFormat.fractionalLength = Math.max(numberFormat.fractionalLength, (fractionalPart || '').length);
+    const [mantissa, exponent] = numberString.split('e');
+    const [integerPart = '', fractionalPart = ''] = mantissa.split(DECIMAL_SEPARATOR);
+
+    let fractionDigitCount = fractionalPart.length;
+    let integerDigitCount = integerPart.length;
+    if (exponent !== undefined) {
+      const exponentNum = parseInt(exponent);
+      if (exponentNum < 0) {
+        const exponentFractionLength = fractionDigitCount + -1 * exponentNum;
+        numberFormat.fractionalLength = Math.max(numberFormat.fractionalLength, exponentFractionLength);
+      }
+    }
+    numberFormat.integerLength = Math.max(numberFormat.integerLength, integerDigitCount);
+    numberFormat.fractionalLength = Math.max(numberFormat.fractionalLength, fractionDigitCount);
   });
 
   return numberFormat;
