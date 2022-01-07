@@ -1,6 +1,6 @@
 {
   "name": "number-format-analyzer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "analyzes a list of numbers to be able to output them formatted as a list as good as possible",
   "main": "index.js",
   "scripts": {
