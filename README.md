@@ -2,6 +2,11 @@
 Analyzes a list of numbers to be able to output them formatted as a list as good as possible aligned at
 the decimal separator
 
+## Installation
+```
+npm install --save number-format-analyzer
+```
+
 ## Usage
 
 ```TypeScript
