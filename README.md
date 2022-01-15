@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/principat/number-format-analyzer/actions/workflows/node.js.yml/badge.svg)](https://github.com/principat/number-format-analyzer/actions/workflows/node.js.yml)
+
 # number-format-analyzer
 Analyzes a list of numbers to be able to output them formatted as a list as good as possible aligned at
 the decimal separator
